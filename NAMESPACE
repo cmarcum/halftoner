@@ -1,0 +1,8 @@
+exportPattern("^[[:alpha:]]+")
+exportMethods(
+    "plot",
+    "points" 
+)
+exportClasses(
+    "halftone" 
+)
