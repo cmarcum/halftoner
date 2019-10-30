@@ -1,14 +1,8 @@
-#Plotting routines to generate an approximate reprographic using 
-# halftone with arbitrary units
-#
-#There are currently two methods for downsampling the base image
-# seq uses a uniformly spaced sequence 
-#img.src https://flic.kr/p/GUFEis
-
 halftone<-function(img,channel=1,x.samp=100,y.samp=100,deg=0,invert=FALSE,thresh=0,seed=1852,method="seq"){
    if(length(dim(img))>2){
     img<-as.matrix(img[,,channel])
    }
+   if(method!="none"&(x.samp>=dim(img)[1] | y.samp>=dim(img)[2])){stop("At least one sampling parameter exceeds dimensionality of original image. \n  Use smaller sampling values in x.samp|y.samp.")}
    if(!invert){img<-1-img}
    img.dim<-dim(img)
    set.seed(seed)
@@ -26,6 +20,11 @@ halftone<-function(img,channel=1,x.samp=100,y.samp=100,deg=0,invert=FALSE,thresh
    img.xy<-which(img.samp>=thresh,arr.ind=TRUE)
    }
    
+   if(method=="none"){
+      img.samp<-img
+      img.xy<-which(img.samp>=thresh,arr.ind=TRUE)
+   }
+   
    img.xy<-rotate(img.xy[,1],img.xy[,2],deg=-90)
    
    val<-img.samp[which(img.samp>=thresh)]
@@ -33,41 +32,47 @@ halftone<-function(img,channel=1,x.samp=100,y.samp=100,deg=0,invert=FALSE,thresh
    if(deg!=0){
       rot.mat<-rotate(img.xy[,1],img.xy[,2],deg=deg)
       ht<-list(rot.mat,val)
-      class(ht)<-"halftone"
+      attr(ht,"grid")<-dim(img.samp)
+      class(ht)<-c("halftone",class(ht))
       return(ht)
    }
    ht<-list(img.xy,val)
-   class(ht)<-"halftone"
+   attr(ht,"grid")<-dim(img.samp)
+   class(ht)<-c("halftone",class(ht))
    return(ht)
 }
 
-setClass("halftone", representation(id = "character"),
-         contains = "list")
+## S4 Methods for halftone
+#Switch from S4 to S3 methods per Michal's suggestion
+#setClass("halftone", representation(id = "character"),
+#         contains = "list")
 
-setMethod("plot",
-    signature(x = "halftone"),
-    function (x, y, ...) 
-    {
-      plot(x[[1]],cex=x[[2]],...)
-    }
-)
+#setMethod("plot",
+#    signature(x = "halftone"),
+#    function (x, y, ...) 
+#    {
+#      plot(x[[1]],cex=x[[2]],...)
+#    }
+#)
 
-setMethod("points",
-    signature(x = "halftone"),
-    function (x, y, ...) 
-    {
-      points(x[[1]],cex=x[[2]],...)
-    }
-)
+#setMethod("points",
+#    signature(x = "halftone"),
+#    function (x, y, ...) 
+#    {
+#      points(x[[1]],cex=x[[2]],...)
+#    }
+#)
 
-#plot.halftone<-function(ht,...){
-#   plot(ht[[1]],cex=ht[[2]],...)
-#}
+## S3 methods for halftone
+plot.halftone<-function(x,...){
+   plot(x[[1]],cex=x[[2]],...)
+}
 
-#points.halftone<-function(ht,...){
-#  points(ht[[1]],cex=ht[[2]],...)
-#} 
+points.halftone<-function(x,...){
+  points(x[[1]],cex=x[[2]],...)
+} 
 
+# Rotate/orbit function
 rotate<-function(x,y,deg=90,centroid.fun=mean){
    rad<-deg*(pi/180)
    x.c<-centroid.fun(x)
@@ -76,6 +81,4 @@ rotate<-function(x,y,deg=90,centroid.fun=mean){
    y.rot<-sin(rad)*(x-x.c)+cos(rad)*(y-y.c)+y.c
    return(cbind(x.rot,y.rot))
 }
-
-
 
