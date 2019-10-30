@@ -33,9 +33,6 @@ The centroid function determines the basis by which the coordinates are translat
 \item{y.rot}{ new y coordinates.}
 
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
 Christopher Steven Marcum
 }
@@ -46,4 +43,4 @@ y<-rnorm(10)
 plot(x,y)
 points(rotate(x,y,deg=15))
 }
-\keyword{ ~misc}
+\keyword{utils}

@@ -1,8 +1,5 @@
 exportPattern("^[[:alpha:]]+")
-exportMethods(
-    "plot",
-    "points" 
-)
-exportClasses(
-    "halftone" 
-)
+importFrom("graphics", "plot", "points")
+S3method(plot,halftone)
+S3method(points,halftone)
+

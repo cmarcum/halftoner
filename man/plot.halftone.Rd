@@ -1,16 +1,9 @@
-\name{plot-methods}
-\docType{methods}
-\alias{plot-methods}
-\alias{plot,halftone,ANY-method}
-\title{ ~~ Methods for Function \code{plot}  ~~}
-\description{
- ~~ Methods for function \code{plot}  ~~
+\name{plot.halftone}
+\alias{plot.halftone,points.halftone}
+\title{S3 plotting methods for halftone class objects.}
+\description{Plots points on a grid passed from a halftone class object.}
+\usage{
+\method{plot}{halftone}(x,\dots)
+\method{points}{halftone}(x,\dots)
 }
-\section{Methods}{
-\describe{
-
-\item{\code{signature(x = "halftone", y = "ANY")}}{
- Plots points from a halftone image object.
-}
-}}
 \keyword{methods}
