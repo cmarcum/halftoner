@@ -16,3 +16,8 @@ This changelog reports all noteable updates to the package.
  - halftone() now returns grid dimensionality as an attribute. 
 ### Removed
  - Dependency on methods has been removed
+## [0.5.1] - 2019-23-12
+### Changed
+ - Fixed typos in the documentation.
+ ### Added
+ - Added dependency on R>=3.5
