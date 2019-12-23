@@ -33,7 +33,7 @@ If method="samp" then the x.samp argument determines the number of resulting row
 
 If method="samp" then the y.samp argument determines the number of resulting cols (y-coordinates) in the plotting grid. However, if the sequence method is used, then this number results in a number proportional to the original order of the y-dimension of img.
 
-If method is set to "seq" then a number of proportional rows and columns are removed uniformaly until the desired down sampling is attained. If set to "samp" then the downsampling is done using a random uniform reduciton of rows without respect to columns. The latter can result in high deviations from original image.
+If method is set to "seq" then a number of proportional rows and columns are removed uniformaly until the desired down sampling is attained. If set to "samp" then the downsampling is done using a random uniform reduction of rows without respect to columns. The latter can result in high deviations from original image.
 
 If method is set to "none" then no downsampling is done. Note that the plotting routine can take a very long time for large dimensional images under this method since every 'pixel' is represented by a point on the grid. However, this may be useful for rendering simple graphics (i.e., clipart, line art) with a transparent element and for rendering large dimensional output.
 }
