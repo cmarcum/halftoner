@@ -21,3 +21,12 @@ This changelog reports all noteable updates to the package.
  - Fixed typos in the documentation.
  ### Added
  - Added dependency on R>=3.5
+
+# Future updates
+ - Revise thresholding to simply reduce pixel intensity to 0
+ - Revise thresholding to take place after inversion, but before downsampling
+ - Add K-channel functionality to preserve consistent downsampling across all channels
+ - Implement spatial sampling routine (k-neighbors on a lattice) 
+ - Implement Bernoulli sampling routine (p propto pixel intensity)
+ - Revise default dimensionality to always be proportional to input dimensions in x and y
+ - Provide new S3 method for rotate()
