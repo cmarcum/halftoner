@@ -8,4 +8,9 @@ If you have suggestions for improving this gallery, please feel free to make a p
 ![Halftone of Self-Portrait by Photographer Jamie Colette Park](graphics/cmarcum.jp.png)
 *Halftone of Self-Portrait by Photographer Jamie Colette Park (@colettepark on instagram)*
 
+## Danielle Navarro
+
+<img src="graphics/djnavarro.png" width = 600 alt = "A halftone self-portrait by Danielle Navarro">
+
+A halftone self-portrait by [Danielle Navarro](https://github.com/djnavarro), with [variations](https://www.flickr.com/photos/stringrbelle/albums/72157713950513018)
 
